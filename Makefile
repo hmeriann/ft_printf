@@ -1,6 +1,9 @@
 NAME =	libftprintf.a
 
-SRCS = 		ft_printf.c
+SRCS = 		ft_printf.c	print_bigX.c\
+			print_c.c	print_sdp.c\
+			print_smallx.c\
+			utilities.c
 
 INCLUDE = ft_printf.h
 OBJ = $(patsubst %.c,%.o,$(SRCS))
