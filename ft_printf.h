@@ -1,5 +1,5 @@
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <stdlib.h>
@@ -20,6 +20,6 @@ typedef struct s_print
 	int		space_flag;
 }			t_print;
 
-int ft_printf(const char *, ...);
+int	ft_printf(const char	*str, ...);
 
 #endif
