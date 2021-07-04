@@ -47,6 +47,8 @@ void	ft_print_x(unsigned long number, t_print *tab)
 	len = ft_strlen(str);
 	if (tab->dot != -1 && tab->dot > len)
 		len = tab->dot;
+	if (tab->dash == 1)
+		ft_putstr(str, ft_strlen(str), tab);
 	while (tab->width > len)
 	{
 		ft_putchar(' ', tab);
@@ -57,6 +59,7 @@ void	ft_print_x(unsigned long number, t_print *tab)
 		ft_putchar('0', tab);
 		len--;
 	}
-	ft_putstr(str, ft_strlen(str), tab);
+	if (tab->dash == 0)
+		ft_putstr(str, ft_strlen(str), tab);
 	free(str);
 }
