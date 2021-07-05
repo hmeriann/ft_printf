@@ -14,37 +14,32 @@ void	ft_print_d(long number, t_print *tab)
 	}
 	str = ft_itoa(number, 10);
 	len = ft_strlen(str);
-	if (tab->dot != -1 && tab->dot > len)
-		len = tab->dot;
+	if (tab->tochnost > 0 && tab->tochnost > len)
+		len = tab->tochnost;
+	if (!number && !tab->tochnost)
+		len = 0;
 	if (sign == 1 && tab->width > 0)
 		tab->width--;
-	if (sign == 1)
+	if (sign == 1 && number > -2147483648)
 		ft_putchar('-', tab);
-	if (tab->dash == 1)
+	if (tab->zero_padding == 1)
+	{
+		while (len > ft_strlen(str))
+		{
+			ft_putchar('0', tab);
+			len--;
+		}
+	}
+	if (tab->dash == 1 && tab->tochnost != 0)
 		ft_putstr(str, ft_strlen(str), tab);
 	while (tab->width > len)
 	{
 		ft_putchar(' ', tab);
 		tab->width--;
 	}
-	while (len > ft_strlen(str))
-	{
-		ft_putchar('0', tab);
-		len--;
-	}
-	if (tab->dash == 0)
+	if (tab->dash == 0 && tab->tochnost != 0)
 		ft_putstr(str, ft_strlen(str), tab);
 	free(str);
-}
-
-void	ft_print_str(char *str, t_print *tab)
-{
-	int	len;
-
-	len = ft_strlen(str);
-	if (tab->dot != -1 && tab->dot < len)
-		len = tab->dot;
-	ft_putstr(str, len, tab);
 }
 
 void	ft_print_p(unsigned long number, t_print *tab)
@@ -54,8 +49,8 @@ void	ft_print_p(unsigned long number, t_print *tab)
 
 	str = ft_itoa(number, 16);
 	len = ft_strlen(str);
-	if (tab->dot != -1 && tab->dot > len)
-		len = tab->dot - 2;
+	if (tab->tochnost != -1 && tab->tochnost > len)
+		len = tab->tochnost - 2;
 	while (tab->width > len)
 	{
 		ft_putchar(' ', tab);
@@ -85,15 +80,15 @@ void	ft_print_u(unsigned int number, t_print *tab)
 	}
 	str = ft_itoa(number, 10);
 	len = ft_strlen(str);
-	if (tab->dot > 0 && tab->dot > len)
-		len = tab->dot;
-	if (!number && !tab->dot)
+	if (tab->tochnost > 0 && tab->tochnost > len)
+		len = tab->tochnost;
+	if (!number && !tab->tochnost)
 		len = 0;
 	if (sign == 1 && tab->width > 0)
 		tab->width--;
 	if (sign == 1)
 		ft_putchar('-', tab);
-	if (tab->dash == 1 && tab->dot != 0)
+	if (tab->dash == 1 && tab->tochnost != 0)
 		ft_putstr(str, ft_strlen(str), tab);
 	while (tab->width > len)
 	{
@@ -105,7 +100,7 @@ void	ft_print_u(unsigned int number, t_print *tab)
 		ft_putchar('0', tab);
 		len--;
 	}
-	if (tab->dash == 0 && tab->dot != 0)
+	if (tab->dash == 0 && tab->tochnost != 0)
 		ft_putstr(str, ft_strlen(str), tab);
 	free(str);
 }

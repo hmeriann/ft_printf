@@ -6,8 +6,8 @@ void	ft_print_c(int c, t_print *tab)
 	int	len;
 
 	len = 1;
-	if (tab->dot != -1 && tab->dot < len)
-		len = tab->dot;
+	if (tab->tochnost != -1 && tab->tochnost < len)
+		len = tab->tochnost;
 	while (tab->width > len)
 	{
 		ft_putchar(' ', tab);

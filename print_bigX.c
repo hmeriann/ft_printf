@@ -45,8 +45,8 @@ void	ft_print_X(unsigned long number, t_print *tab)
 
 	str = ft_itoa_X(number, 16);
 	len = ft_strlen(str);
-	if (tab->dot != -1 && tab->dot > len)
-		len = tab->dot;
+	if (tab->tochnost != -1 && tab->tochnost > len)
+		len = tab->tochnost;
 	if (tab->dash == 1)
 		ft_putstr(str, ft_strlen(str), tab);
 	while (tab->width > len)

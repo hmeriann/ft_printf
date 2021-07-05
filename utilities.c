@@ -33,3 +33,23 @@ void	ft_putstr(char *str, int len, t_print *tab)
 		len--;
 	}
 }
+
+void	ft_print_str(char *str, t_print *tab)
+{
+	int	len;
+
+	if (str == 0)
+		str = "(null)";
+	len = ft_strlen(str);
+	if (tab->tochnost != -1 && tab->tochnost < len)
+		len = tab->tochnost;
+	if (tab->sign == 1)
+		ft_putstr(str, len, tab);
+	while (tab->width > len)
+	{
+		ft_putchar(' ', tab);
+		tab->width--;
+	}
+	if (tab->sign == 0)
+		ft_putstr(str, len, tab);
+}
