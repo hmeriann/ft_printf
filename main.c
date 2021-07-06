@@ -19,8 +19,8 @@ int	main(void)
 // 	ft_printf("ft_printf : |%.5s|\n\n", ft_itoa(0xab54321, 16));
 // 	printf("5) printf : |%7p|\n", &nu);
 // 	ft_printf("ft_printf : |%7p|\n\n", &nu);
-	printf("6) printf : Char %% %is |%5.c|\n", z, z);
-	ft_printf("ft_printf : Char %% %is |%5.c|\n\n", z, z);
+	printf("6) printf : Char |%*c|\n", -10, '0');
+	ft_printf("ft_printf : Char |%*c|", -10, '0');
 // // printf("7) printf : Magic  |%05u|\n", 0);
 // // ft_printf("ft_printf : Magic  |%05u|\n\n", 0);
 

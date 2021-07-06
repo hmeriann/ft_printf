@@ -51,22 +51,32 @@ int	ft_printf(const char *str, ...)
 						tab->width = -1;
 					i++;
 				}
-				tab->width = 0;
+				// tab->width = 0;
 				while (ft_isdigit(str[i]))
 				{
 					tab->width = tab->width * 10 + (str[i] - '0');
 					i++;
 				}
 			}
-			
 			if (str[i] == '.' && str[i + 1] != '\0')
 			{
 				tab->tochnost = 0;
 				i++;
-				while (ft_isdigit(str[i]))
+				if (str[i] == '*' || ft_isdigit(str[i]))
 				{
-					tab->tochnost = tab->tochnost * 10 + (str[i] - '0');
-					i++;
+					if (str[i] == '*')
+					{
+						tab->tochnost = va_arg(ap, int);
+						if (tab->tochnost < 0)
+							tab->tochnost = -1;
+						i++;
+					}
+					// tab->tochnost = 0;
+					while (ft_isdigit(str[i]))
+					{
+						tab->tochnost = tab->tochnost * 10 + (str[i] - '0');
+						i++;
+					}
 				}
 			}
 			if (str[i] == 's')
