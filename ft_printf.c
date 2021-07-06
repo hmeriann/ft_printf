@@ -46,12 +46,15 @@ int	ft_printf(const char *str, ...)
 			{
 				if (str[i] == '*')
 				{
+					tab->dash = 0;
 					tab->width = va_arg(ap, int);
 					if (tab->width < 0)
-						tab->width = -1;
+					{
+						tab->dash = 1;
+						tab->width *= -1;
+					}
 					i++;
 				}
-				// tab->width = 0;
 				while (ft_isdigit(str[i]))
 				{
 					tab->width = tab->width * 10 + (str[i] - '0');
