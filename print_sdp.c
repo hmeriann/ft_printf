@@ -4,12 +4,11 @@ void	ft_print_d(long number, t_print *tab)
 {
 	char	*str;
 	int		len;
-	int		sign;
 
-	sign = 0;
+	tab->dash = 0;
 	if (number < 0)
 	{
-		sign = 1;
+		tab->dash = 1;
 		number *= -1;
 	}
 	str = ft_itoa(number, 10);
@@ -18,9 +17,9 @@ void	ft_print_d(long number, t_print *tab)
 		len = tab->tochnost;
 	if (!number && !tab->tochnost)
 		len = 0;
-	if (sign == 1 && tab->width > 0)
+	if (tab->dash == 1 && tab->width > 0)
 		tab->width--;
-	if (sign == 1 && number > -2147483648)
+	if (tab->dash == 1 && number > -2147483648)
 		ft_putchar('-', tab);
 	if (tab->zero_padding == 1)
 	{
@@ -70,12 +69,11 @@ void	ft_print_u(unsigned int number, t_print *tab)
 {
 	char	*str;
 	int		len;
-	int		sign;
 
-	sign = 0;
+	tab->dash = 0;
 	if (number < 0)
 	{
-		sign = 1;
+		tab->dash = 1;
 		number *= -1;
 	}
 	str = ft_itoa(number, 10);
@@ -84,9 +82,9 @@ void	ft_print_u(unsigned int number, t_print *tab)
 		len = tab->tochnost;
 	if (!number && !tab->tochnost)
 		len = 0;
-	if (sign == 1 && tab->width > 0)
+	if (tab->dash == 1 && tab->width > 0)
 		tab->width--;
-	if (sign == 1)
+	if (tab->dash == 1)
 		ft_putchar('-', tab);
 	if (tab->dash == 1 && tab->tochnost != 0)
 		ft_putstr(str, ft_strlen(str), tab);

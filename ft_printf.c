@@ -7,7 +7,6 @@ t_print	*ft_init_tab(t_print *tab)
 	tab->zero_padding = 0;
 	tab->tochnost = -1;
 	tab->dash = 0;
-	tab->sign = 0;
 	tab->total_length = 0;
 	tab->is_zero = 0;
 	tab->percent = 0;
