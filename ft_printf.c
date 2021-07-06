@@ -29,6 +29,8 @@ int	ft_printf(const char *str, ...)
 	ft_init_tab(tab);
 	while (str[i] != '\0')
 	{
+		tab->dash = 0;
+		tab->width = 0;
 		if (str[i] == '%' && str[i + 1] != '\0')
 		{
 			i++;
@@ -46,7 +48,6 @@ int	ft_printf(const char *str, ...)
 			{
 				if (str[i] == '*')
 				{
-					tab->dash = 0;
 					tab->width = va_arg(ap, int);
 					if (tab->width < 0)
 					{
