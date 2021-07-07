@@ -6,15 +6,15 @@ void	ft_print_c(int c, t_print *tab)
 	int	len;
 
 	len = 1;
-	if (tab->tochnost != -1 && tab->tochnost < len)
-		len = tab->tochnost;
-	if (tab->dash == 1)
-		ft_putchar((unsigned char)c, tab);
-	while (tab->width > len)
-	{
-		ft_putchar(' ', tab);
-		tab->width--;
-	}
-	if (tab->dash == 0)
-		ft_putchar((unsigned char)c, tab);
+	ft_putchar((unsigned char)c, tab);
+}
+
+void	ft_print_str(char *str, t_print *tab)
+{
+	int	len;
+
+	if (str == 0)
+		str = "(null)";
+	len = ft_strlen(str);
+	ft_putstr(str, len, tab);
 }
