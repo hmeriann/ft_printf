@@ -3,7 +3,7 @@
 t_print	*ft_init_tab(t_print *tab)
 {
 	tab->width = 0;
-	tab->precision = 0;
+	tab->tochnost = 0;
 	tab->zero_padding = 0;
 	tab->tochnost = -1;
 	tab->dash = 0;

@@ -1,38 +1,405 @@
 #include <stdio.h>
+#include <limits.h>
 
 #include "ft_printf.h"
 
 int	main(void)
 {
-	// int		nu = -98;
-	char	z = 'B';
+	// int d = 10;
+int a;
+	int b;
 
-// printf("1) printf : |%.3s|\n\n", NULL);
-// ft_printf("ft_printf : |%.3s|\n\n", NULL);
-// // printf("2) printf : Magic  |%-.5d|\n", -8, -42);
-// // ft_printf("ft_printf : Magic  |%-.5d|\n\n", -8, -42);
-// 	printf("3) printf : Hexadecimal for %d is |%100.050x|\n", -42, -42);
-// 	ft_printf("ft_printf : Hexadecimal for %d is |%100.050x|\n\n", -42, -42);
-// 	printf("3a) printf : Hexadecimal for %d is %10.5X\n", -42, -42);
-// 	ft_printf(" ft_printf : Hexadecimal for %d is %10.5X\n\n", -42, -42);
-// printf("5) printf : |%p|\n", &nu);
-// ft_printf("ft_printf : |%p|\n\n", &nu);
-// printf("28 - |%-*c|\n", 10, '1');
-// ft_printf("28 - |%-*c|\n\n", 10, '1');
-// printf("30 - | -%-*c* -%-*c* |\n", 2, 0, -2, 0);
-// ft_printf("30 - | -%-*c* -%-*c* |\n\n", 2, 0, -2, 0);
-// printf("32 - | -%-*c* -%-*c* |\n", 2, 0, -2, 0);
-// ft_printf("32 - | -%-*c* -%-*c* |\n\n", 2, 0, -2, 0);
-// printf("15 - |%*c%*c|\n", -10, '0', 10, '1');
-// ft_printf("15 - |%*c%*c|\n\n", -10, '0', 10, '1');
-// printf("19 - |%-10c%*c%c*|\n",'0', 10, '1', '2');
-// ft_printf("19 - |%-10c%*c%c*|\n\n",'0', 10, '1', '2');
-// printf("33 - | -%-2c* -%2c* |\n", 0, 0);
-// ft_printf("33 - | -%-2c* -%2c* |", 0, 0);
-// printf("7) printf : Magic  |%05u|\n", 0);
-// ft_printf("ft_printf : Magic  |%05u|\n\n", 0);
+	a = ft_printf("Hello, %s\n", "World!");
+	b = printf("Hello, %s\n", "World!");
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
 
-	printf("| %-4s |\n", "123");
-	ft_printf("| %-4s |", "123");
+	a = ft_printf("Hello, %15s\n", "World!");
+	b = printf("Hello, %15s\n", "World!");
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15.5s\n", "World!");
+	b = printf("Hello, %15.5s\n", "World!");
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.10s\n", "World!");
+	b = printf("Hello, %5.10s\n", "World!");
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.10s\n", "World!");
+	b = printf("Hello, %.10s\n", "World!");
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.3s\n", "World!");
+	b = printf("Hello, %.3s\n", "World!");
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.s\n", "World!");
+	b = printf("Hello, %.s\n", "World!");
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %s\n", NULL);
+	b = printf("Hello, %s\n", NULL);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15s\n", NULL);
+	b = printf("Hello, %15s\n", NULL);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15.10s\n", NULL);
+	b = printf("Hello, %15.10s\n", NULL);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.10s\n", NULL);
+	b = printf("Hello, %5.10s\n", NULL);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.10s\n", NULL);
+	b = printf("Hello, %.10s\n", NULL);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.s\n", NULL);
+	b = printf("Hello, %.s\n", NULL);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.2s\n", NULL);
+	b = printf("Hello, %.2s\n", NULL);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %d\n", 0);
+	b = printf("Hello, %d\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15d\n", 0);
+	b = printf("Hello, %15d\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15.5d\n", 0);
+	b = printf("Hello, %15.5d\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.10d\n", 0);
+	b = printf("Hello, %5.10d\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n\n\n\n", b);
+
+	a = ft_printf("Hello, %015.1d\n", 0);
+	b = printf("Hello, %015.1d\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %0.10d\n", 0);
+	b = printf("Hello, %0.10d\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.1d\n", 0);
+	b = printf("Hello, %.1d\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.d\n", 0);
+	b = printf("Hello, %.d\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %d\n", INT_MAX);
+	b = printf("Hello, %d\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15d\n", INT_MAX);
+	b = printf("Hello, %15d\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15.10d\n", INT_MAX);
+	b = printf("Hello, %15.10d\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.15d\n", INT_MAX);
+	b = printf("Hello, %5.15d\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.d\n", INT_MAX);
+	b = printf("Hello, %5.d\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.2d\n", INT_MAX);
+	b = printf("Hello, %5.2d\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.20d\n", INT_MAX);
+	b = printf("Hello, %.20d\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.2d\n", INT_MAX);
+	b = printf("Hello, %.2d\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.d\n", INT_MAX);
+	b = printf("Hello, %d\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %d\n", INT_MIN);
+	b = printf("Hello, %d\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15d\n", INT_MIN);
+	b = printf("Hello, %15d\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15.10d\n", INT_MIN);
+	b = printf("Hello, %15.10d\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.15d\n", INT_MIN);
+	b = printf("Hello, %5.15d\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.d\n", INT_MIN);
+	b = printf("Hello, %5.d\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.2d\n", INT_MIN);
+	b = printf("Hello, %5.2d\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.20d\n", INT_MIN);
+	b = printf("Hello, %.20d\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.2d\n", INT_MIN);
+	b = printf("Hello, %.2d\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.d\n", INT_MIN);
+	b = printf("Hello, %.d\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %d\n", INT_MIN);
+	b = printf("Hello, %d\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %d\n", INT_MIN);
+	b = printf("Hello, %d\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15d\n", INT_MAX + 1);
+	b = printf("Hello, %15d\n", INT_MAX + 1);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.5d\n", INT_MIN - 1);
+	b = printf("Hello, %.5d\n", INT_MIN - 1);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %10d\n", INT_MIN - 1);
+	b = printf("Hello, %10d\n", INT_MIN - 1);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15.5d\n", INT_MIN - 1);
+	b = printf("Hello, %15.5d\n", INT_MIN - 1);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %x\n", 0);
+	b = printf("Hello, %x\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15x\n", 0);
+	b = printf("Hello, %15x\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15.5x\n", 0);
+	b = printf("Hello, %15.5x\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.10x\n", 0);
+	b = printf("Hello, %5.10x\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.1x\n", 0);
+	b = printf("Hello, %5.1x\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.10x\n", 0);
+	b = printf("Hello, %.10x\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.1x\n", 0);
+	b = printf("Hello, %.1x\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.x\n", 0);
+	b = printf("Hello, %.x\n", 0);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %x\n", INT_MAX);
+	b = printf("Hello, %x\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15x\n", INT_MAX);
+	b = printf("Hello, %15x\n", INT_MAX);
+	printf("a = %x\n", a);
+	printf("b = %x\n", a);
+
+	a = ft_printf("Hello, %15.10x\n", INT_MAX);
+	b = printf("Hello, %15.10x\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.15x\n", INT_MAX);
+	b = printf("Hello, %5.15x\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.x\n", INT_MAX);
+	b = printf("Hello, %5.x\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.2x\n", INT_MAX);
+	b = printf("Hello, %5.2x\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.20x\n", INT_MAX);
+	b = printf("Hello, %.20x\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.2x\n", INT_MAX);
+	b = printf("Hello, %.2x\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.x\n", INT_MAX);
+	b = printf("Hello, %x\n", INT_MAX);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %x\n", INT_MIN);
+	b = printf("Hello, %x\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15x\n", INT_MIN);
+	b = printf("Hello, %15x\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15.10x\n", INT_MIN);
+	b = printf("Hello, %15.10x\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.15x\n", INT_MIN);
+	b = printf("Hello, %5.15x\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.x\n", INT_MIN);
+	b = printf("Hello, %5.x\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %5.2x\n", INT_MIN);
+	b = printf("Hello, %5.2x\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.20x\n", INT_MIN);
+	b = printf("Hello, %.20x\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.2x\n", INT_MIN);
+	b = printf("Hello, %.2x\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.x\n", INT_MIN);
+	b = printf("Hello, %.x\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %x\n", INT_MIN);
+	b = printf("Hello, %x\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %x\n", INT_MIN);
+	b = printf("Hello, %x\n", INT_MIN);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15x\n", INT_MAX + 1);
+	b = printf("Hello, %15x\n", INT_MAX + 1);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %.5x\n", INT_MIN - 1);
+	b = printf("Hello, %.5x\n", INT_MIN - 1);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %10x\n", INT_MIN - 1);
+	b = printf("Hello, %10x\n", INT_MIN - 1);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	a = ft_printf("Hello, %15.5x\n", INT_MIN - 1);
+	b = printf("Hello, %15.5x\n", INT_MIN - 1);
+	printf("a = %d\n", a);
+	printf("b = %d\n", b);
+
+	printf("    printf: (%d)\n", printf("[%20.15p]", 0));
+	printf(" ft_printf: (%d)\n", ft_printf("[%20.15p]", 0));
 	return (0);
 }
