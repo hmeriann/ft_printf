@@ -74,12 +74,12 @@ int	ft_printf(const char *str, ...)
 							tab->tochnost = -1;
 						i++;
 					}
-					// tab->tochnost = 0;
 					while (ft_isdigit(str[i]))
 					{
 						tab->tochnost = tab->tochnost * 10 + (str[i] - '0');
 						i++;
 					}
+					tab->zero_padding = 0;
 				}
 			}
 			if (str[i] == 's')

@@ -34,29 +34,6 @@ void	ft_print_d(long number, t_print *tab)
 	while (tab->tochnost-- > len)
 		ft_putchar('0', tab);
 	ft_putstr(str, ft_strlen(str), tab);
-	// if (tab->tochnost >= 0 && tab->tochnost > len)
-	// 	len = tab->tochnost;
-	// if (!number && !tab->tochnost)
-	// 	len = 0;
-	// if (tab->dash == 1)
-	// 	ft_putchar('-', tab);
-	// if (tab->zero_padding == 1)
-	// {
-	// 	while (len > ft_strlen(str))
-	// 	{
-	// 		ft_putchar('0', tab);
-	// 		len--;
-	// 	}
-	// }
-	// if (tab->dash == 1 && tab->tochnost != 0)
-	// 	ft_putstr(str, ft_strlen(str), tab);
-	// while (tab->width > len)
-	// {
-	// 	ft_putchar(' ', tab);
-	// 	tab->width--;
-	// }
-	// if (tab->dash == 0 && tab->tochnost != 0)
-	// 	ft_putstr(str, ft_strlen(str), tab);
 	free(str);
 }
 
