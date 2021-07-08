@@ -1,5 +1,7 @@
 #include "ft_printf.h"
 
+#include <stdio.h>
+
 t_print	*ft_init_tab(t_print *tab)
 {
 	tab->dash = 0;
@@ -55,7 +57,9 @@ int	ft_printf(const char *str, ...)
 	va_start(ap, str);
 	printspec(str, i, ap, *tab);
 	va_end(ap);
+	// printf("%d\n", tab->total_length);
 	i = tab->total_length;
 	free(tab);
+	// printf("%d", i);
 	return (i);
 }
