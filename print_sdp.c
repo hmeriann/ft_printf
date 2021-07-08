@@ -13,7 +13,7 @@ void	ft_print_d(long number, t_print *tab)
 	}
 	str = ft_itoa(number, 10);
 	len = ft_strlen(str);
-	if (tab->tochnost > 0 && tab->tochnost > len)
+	if (tab->tochnost >= 0 && tab->tochnost > len)
 		len = tab->tochnost;
 	if (!number && !tab->tochnost)
 		len = 0;
