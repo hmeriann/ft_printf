@@ -399,8 +399,8 @@ int	main(void)
 	// printf("a = %d\n", a);
 	// printf("b = %d\n", b);
 
-	printf("    printf: (%d)\n", printf(" %*p %-*p ", -10, 101, -10, 42));
-	printf(" ft_printf: (%d)\n", ft_printf(" %*p %-*p ", -10, 101, -10, 42));
+	printf("printf: (%d)\n", printf("%5%"));
+	printf("ft_printf: (%d)\n", ft_printf("%5%"));
 	// while (1)
 	// ;
 	return (0);
