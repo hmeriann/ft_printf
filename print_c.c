@@ -1,5 +1,4 @@
 #include "ft_printf.h"
-#include <stdio.h>
 
 void	ft_print_c(int c, t_print *tab)
 {

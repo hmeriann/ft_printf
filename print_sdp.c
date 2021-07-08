@@ -16,6 +16,7 @@ void	ft_print_d(long number, t_print *tab)
 {
 	char	*str;
 	int		len;
+
 	tab->dash = 0;
 	if (number < 0)
 	{
