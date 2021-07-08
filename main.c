@@ -401,7 +401,7 @@ int	main(void)
 
 	printf("    printf: (%d)\n", printf(" %*p %-*p ", -10, 101, -10, 42));
 	printf(" ft_printf: (%d)\n", ft_printf(" %*p %-*p ", -10, 101, -10, 42));
-	while (1)
-	;
+	// while (1)
+	// ;
 	return (0);
 }
