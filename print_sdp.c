@@ -26,17 +26,36 @@ void	ft_print_d(int number, t_print *tab)
 	}
 	str = ft_itoa(nbr, 10);
 	len = ft_strlen(str);
-	if (tab->tochnost >= 0 && tab->tochnost > len)
-		while (tab->width-- > tab->tochnost)
-			ft_putchar(sym, tab);
-	else
-		while (tab->width-- > len)
-			ft_putchar(sym, tab);
-	if (tab->isnegative == 1)
-		ft_putchar('-', tab);
-	while (tab->tochnost-- > len)
-		ft_putchar('0', tab);
-	ft_putstr(str, ft_strlen(str), tab);
+	if (tab->left_align == 0) //fight align
+	{
+		if (tab->tochnost >= 0 && tab->tochnost > len)
+			while (tab->width-- - tab->tochnost > 0)
+				ft_putchar(sym, tab);
+		else
+			while (tab->width-- - len > 0)
+				ft_putchar(sym, tab);
+		if (tab->isnegative == 1)
+			ft_putchar('-', tab);
+		if (tab->tochnost >= 0)
+			while (tab->tochnost-- > len)
+				ft_putchar('0', tab);
+		ft_putstr(str, ft_strlen(str), tab);
+	}
+	else //left align
+	{
+		if (tab->isnegative == 1)
+			ft_putchar('-', tab);
+		if (tab->tochnost >= 0)
+			while (tab->tochnost-- > len)
+			{
+				ft_putchar('0', tab);
+				tab->width--;
+			}
+		ft_putstr(str, ft_strlen(str), tab);
+		tab->width -= len;
+		while (tab->width-- > 0)
+			ft_putchar(' ', tab);
+	}
 	free(str);
 }
 
