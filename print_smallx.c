@@ -47,7 +47,7 @@ void	ft_print_x(unsigned long number, t_print *tab)
 	len = ft_strlen(str);
 	if (tab->tochnost != -1 && tab->tochnost > len)
 		len = tab->tochnost;
-	if (tab->dash == 1)
+	if (tab->left_align == 1)
 		ft_putstr(str, ft_strlen(str), tab);
 	while (tab->width > len)
 	{
@@ -59,7 +59,7 @@ void	ft_print_x(unsigned long number, t_print *tab)
 		ft_putchar('0', tab);
 		len--;
 	}
-	if (tab->dash == 0)
+	if (tab->left_align == 0)
 		ft_putstr(str, ft_strlen(str), tab);
 	free(str);
 }

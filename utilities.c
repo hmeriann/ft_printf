@@ -43,13 +43,13 @@ void	ft_print_str(char *str, t_print *tab)
 	len = ft_strlen(str);
 	if (tab->tochnost != -1 && tab->tochnost < len)
 		len = tab->tochnost;
-	if (tab->dash == 1)
+	if (tab->left_align == 1)
 		ft_putstr(str, len, tab);
 	while (tab->width > len)
 	{
 		ft_putchar(' ', tab);
 		tab->width--;
 	}
-	if (tab->dash == 0)
+	if (tab->left_align == 0)
 		ft_putstr(str, len, tab);
 }
