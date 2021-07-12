@@ -14,7 +14,7 @@ void	find_num_idx(int len, unsigned long number, int base, char *str)
 	}
 }
 
-char	*ft_itoa(unsigned long number, int base)
+char	*ft_itoa(unsigned long long number, int base)
 {
 	unsigned long	tmp_num;
 	int				len;
@@ -30,7 +30,7 @@ char	*ft_itoa(unsigned long number, int base)
 		tmp_num /= base;
 		len += 1;
 	}
-	str = (char *)malloc(sizeof(len + 1));
+	str = (char *)malloc(len + 1);
 	if (!str)
 		return (NULL);
 	str[len] = '\0';

@@ -1,11 +1,13 @@
 #include "ft_printf.h"
 
-void	ft_print_d(long number, t_print *tab)
+void	ft_print_d(int number, t_print *tab)
 {
 	char	*str;
 	int		len;
 	char	sym;
+	long long	nbr;
 
+	nbr = number;
 	tab->isnegative = 0;
 	sym = ' ';
 	if (tab->zero_prefix == 1)
@@ -19,11 +21,10 @@ void	ft_print_d(long number, t_print *tab)
 	if (number < 0)
 	{
 		tab->isnegative = 1;
-		ft_putchar('-', tab);
-		number *= -1;
+		nbr *= -1;
 		tab->width--;
 	}
-	str = ft_itoa(number, 10);
+	str = ft_itoa(nbr, 10);
 	len = ft_strlen(str);
 	if (tab->tochnost >= 0 && tab->tochnost > len)
 		while (tab->width-- > tab->tochnost)
@@ -31,15 +32,15 @@ void	ft_print_d(long number, t_print *tab)
 	else
 		while (tab->width-- > len)
 			ft_putchar(sym, tab);
-	// if (tab->isnegative == 1)
-	// 	ft_putchar('-', tab);
+	if (tab->isnegative == 1)
+		ft_putchar('-', tab);
 	while (tab->tochnost-- > len)
 		ft_putchar('0', tab);
 	ft_putstr(str, ft_strlen(str), tab);
 	free(str);
 }
 
-void	ft_print_p(unsigned long number, t_print *tab)
+void	ft_print_p(unsigned long long number, t_print *tab)
 {
 	char	*str;
 	int		len;
