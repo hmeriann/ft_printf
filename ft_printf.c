@@ -121,7 +121,8 @@ int	ft_printf(const char *str, ...)
 			tab->width = 0;
 			tab->tochnost = -1;
 			tab->index = tab->index + 1;
-			parceflags(str, tab, ap);
+			while (str[tab->index] == '0' || str[tab->index] == '-')
+				parceflags(str, tab, ap);
 			if (str[tab->index] == '*' || ft_isdigit(str[tab->index]))
 				parcewidth(str, tab, ap);
 			if (str[tab->index] == '.' && str[tab->index + 1] != '\0')
