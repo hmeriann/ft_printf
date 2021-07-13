@@ -1,48 +1,56 @@
 #include "ft_printf.h"
 
-static void	find_num_X(int len, unsigned long number, int base, char *str)
+void	print_rightalign(char *str, char sym, int len, t_print *tab)
 {
-	while (len > 0)
-	{
-		str[len - 1] = number % base;
-		if (number % base > 9)
-			str[len - 1] += 'A' - 10;
-		else
-			str[len - 1] += '0';
-		number /= base;
-		len--;
-	}
+	if (tab->tochnost >= 0 && tab->tochnost > len)
+		while (tab->width-- - tab->tochnost > 0)
+			ft_putchar(sym, tab);
+	else
+		while (tab->width-- - len > 0)
+			ft_putchar(sym, tab);
+	if (tab->isnegative == 1)
+		ft_putchar('-', tab);
+	if (tab->tochnost >= 0)
+		while (tab->tochnost-- > len)
+			ft_putchar('0', tab);
+	ft_putstr(str, ft_strlen(str), tab);
 }
 
-char	*ft_itoa_X(unsigned long number, int base)
+void	print_leftalign(char *str, int len, t_print *tab)
 {
-	unsigned long	tmp_num;
-	int				len;
-	char			*str;
-
-	tmp_num = number;
-	len = 0;
-	str = NULL;
-	if (number == 0)
-		len += 1;
-	while (tmp_num > 0)
+	if (tab->isnegative == 1)
+		ft_putchar('-', tab);
+	if (tab->tochnost >= 0)
 	{
-		tmp_num /= base;
-		len += 1;
+		while (tab->tochnost-- > len)
+		{
+			ft_putchar('0', tab);
+			tab->width--;
+		}
 	}
-	str = (char *)malloc(sizeof(len + 1));
-	if (!str)
-		return (NULL);
-	str[len] = '\0';
-	find_num_X(len, number, base, str);
-	return (str);
+	ft_putstr(str, ft_strlen(str), tab);
+	tab->width -= len;
+	while (tab->width-- > 0)
+		ft_putchar(' ', tab);
 }
 
-void	ft_print_X(unsigned long number, t_print *tab)
+void	print_uppx(long long nbr, char sym, t_print *tab)
 {
-	char	*str;
-	int		len;
-	char	sym;
+	char		*str;
+	int			len;
+
+	str = ft_itoa_upperx(nbr, 16);
+	len = ft_strlen(str);
+	if (tab->left_align == 0)
+		print_rightalign(str, sym, len, tab);
+	else
+		print_leftalign(str, len, tab);
+	free(str);
+}
+
+void	ft_print_upperx(unsigned long number, t_print *tab)
+{
+	char		sym;
 	long long	nbr;
 
 	nbr = number;
@@ -62,37 +70,5 @@ void	ft_print_X(unsigned long number, t_print *tab)
 		nbr *= -1;
 		tab->width--;
 	}
-	str = ft_itoa_X(nbr, 16);
-	len = ft_strlen(str);
-	if (tab->left_align == 0) //fight align
-	{
-		if (tab->tochnost >= 0 && tab->tochnost > len)
-			while (tab->width-- - tab->tochnost > 0)
-				ft_putchar(sym, tab);
-		else
-			while (tab->width-- - len > 0)
-				ft_putchar(sym, tab);
-		if (tab->isnegative == 1)
-			ft_putchar('-', tab);
-		if (tab->tochnost >= 0)
-			while (tab->tochnost-- > len)
-				ft_putchar('0', tab);
-		ft_putstr(str, ft_strlen(str), tab);
-	}
-	else //left align
-	{
-		if (tab->isnegative == 1)
-			ft_putchar('-', tab);
-		if (tab->tochnost >= 0)
-			while (tab->tochnost-- > len)
-			{
-				ft_putchar('0', tab);
-				tab->width--;
-			}
-		ft_putstr(str, ft_strlen(str), tab);
-		tab->width -= len;
-		while (tab->width-- > 0)
-			ft_putchar(' ', tab);
-	}
-	free(str);
+	print_uppx(nbr, sym, tab);
 }

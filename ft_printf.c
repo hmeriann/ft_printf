@@ -17,7 +17,7 @@ t_print	*ft_init_tab(t_print *tab)
 
 static int	parcewidth(const char *str, t_print *tab, va_list ap)
 {
-if (str[tab->index] == '*')
+	if (str[tab->index] == '*')
 	{
 		tab->width = va_arg(ap, int);
 		if (tab->width < 0)
@@ -85,7 +85,7 @@ static void	parcespec(const char *str, t_print *tab, va_list ap)
 	else if (str[tab->index] == 'x')
 		ft_print_x(va_arg(ap, unsigned int), tab);
 	else if (str[tab->index] == 'X')
-		ft_print_X(va_arg(ap, unsigned int), tab);
+		ft_print_upperx(va_arg(ap, unsigned int), tab);
 	else if (str[tab->index] == 'd' || str[tab->index] == 'i')
 		ft_print_d(va_arg(ap, int), tab);
 	else if (str[tab->index] == '%')
@@ -122,6 +122,10 @@ int	ft_printf(const char *str, ...)
 			tab->tochnost = -1;
 			tab->index = tab->index + 1;
 			parceflags(str, tab, ap);
+			if (str[tab->index] == '*' || ft_isdigit(str[tab->index]))
+				parcewidth(str, tab, ap);
+			if (str[tab->index] == '.' && str[tab->index + 1] != '\0')
+				parcetochn(str, tab, ap);
 			parcespec(str, tab, ap);
 		}
 		else
