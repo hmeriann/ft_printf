@@ -10,7 +10,7 @@ void	ft_print_d(int number, t_print *tab)
 	nbr = number;
 	tab->isnegative = 0;
 	sym = ' ';
-	if (tab->zero_prefix == 1)
+	if (tab->zero_prefix == 1 && tab->width > len && tab->tochnost <= 0) // тут было только про префикс условие
 		sym = '0';
 	if (!number && tab->tochnost == 0)
 	{
@@ -26,19 +26,41 @@ void	ft_print_d(int number, t_print *tab)
 	}
 	str = ft_itoa(nbr, 10);
 	len = ft_strlen(str);
-	if (tab->left_align == 0) //fight align
+	if (tab->left_align == 0) //right align
 	{
-		if (tab->tochnost >= 0 && tab->tochnost > len)
-			while (tab->width-- - tab->tochnost > 0)
-				ft_putchar(sym, tab);
+		if (tab->tochnost != 0 && tab->tochnost < tab->width && tab->width > len)
+		{
+			if (tab->tochnost > 0)
+			{
+				while (tab->width-- > tab->tochnost)
+					ft_putchar(' ', tab);
+				if (tab->isnegative == 1)
+					ft_putchar('-', tab);
+				while (tab->tochnost-- > len)
+					ft_putchar('0', tab);
+			}
+			else
+			{
+				if (tab->isnegative == 1)
+					ft_putchar('-', tab);
+				while (tab->width-- > len)
+					ft_putchar('0', tab);
+			}
+		}
 		else
-			while (tab->width-- - len > 0)
-				ft_putchar(sym, tab);
-		if (tab->isnegative == 1)
-			ft_putchar('-', tab);
-		if (tab->tochnost >= 0)
-			while (tab->tochnost-- > len)
-				ft_putchar('0', tab);
+		{
+			if (tab->tochnost > 0 && tab->tochnost > len)
+				while (tab->width-- - tab->tochnost > 0)
+					ft_putchar(sym, tab);
+			else
+				while (tab->width-- - len > 0)
+					ft_putchar(sym, tab);
+			if (tab->isnegative == 1)
+				ft_putchar('-', tab);
+			if (tab->tochnost >= 0)
+				while (tab->tochnost-- > len)
+					ft_putchar('0', tab);
+		}
 		ft_putstr(str, ft_strlen(str), tab);
 	}
 	else //left align
