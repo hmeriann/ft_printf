@@ -120,6 +120,7 @@ int	ft_printf(const char *str, ...)
 		{
 			tab->width = 0;
 			tab->tochnost = -1;
+			// tab->zero_prefix = 0;
 			tab->index = tab->index + 1;
 			while (str[tab->index] == '0' || str[tab->index] == '-')
 				parceflags(str, tab, ap);

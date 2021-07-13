@@ -9,14 +9,16 @@ int	main(void)
 	int	n = 16;
 	int	m = 1116;
 
-	printf("(%d)\n", printf("0*%0-*.*d*0 0*%0*.*d*0", 6, 2, 102, 10, 21, -101));//1
-	printf("(%d)\n\n", ft_printf("0*%0-*.*d*0 0*%0*.*d*0", 6, 2, 102, 10, 21, -101));
-	// printf("(%d)\n", printf("%2d", d));//2
-	// printf("(%d)\n\n", ft_printf("%2d", d));
-	// printf("(%d)\n", printf("%2.d", d));//3
-	// printf("(%d)\n\n", ft_printf("%2d", d));
-	// printf("(%d)\n", printf("%2.3d", d));//4
-	// printf("(%d)\n\n", ft_printf("%2.3d", d));
+	// printf("(%d)\n", printf("0*%0-*d*0 0*%0*d*0 ", 21, 1021, 21, -1011));//14
+	// printf("(%d)\n\n", ft_printf("0*%0-*d*0 0*%0*d*0 ", 21, 1021, 21, -1011));
+	printf("(%d)\n", printf("0*%0-*.*d*0 0*%0*.*d*0 ", 2, 6, 102, 21, 10, -101));//13
+	printf("(%d)\n\n", ft_printf("0*%0-*.*d*0 0*%0*.*d*0 ", 2, 6, 102, 21, 10, -101));
+	// printf("(%d)\n", printf("%10.0d", -n));//25
+	// printf("(%d)\n\n", ft_printf("%10.0d", -n));
+	// printf("(%d)\n", printf("%3d", 0));//81
+	// printf("(%d)\n\n", ft_printf("%3d", 0));
+	// printf("(%d)\n", printf("%10.42d ", 0));
+	// printf("(%d)\n\n", ft_printf("%10.42d ", 0));
 	// printf("(%d)\n", printf("%2.-3d", d));//5
 	// printf("(%d)\n\n", ft_printf("%2.-3d", d));
 	// printf("(%d)\n", printf("%3.5d", d));//6
