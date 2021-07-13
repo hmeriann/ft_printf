@@ -97,7 +97,8 @@ static void	parcespec(const char *str, t_print *tab, va_list ap)
 	else if (str[tab->index] == 'p')
 		ft_print_p(va_arg(ap, unsigned long long), tab);
 	else
-		ft_putchar(str[tab->index], tab);
+		// ft_putchar(str[tab->index], tab);
+		tab->index = tab->index + 1;
 }
 
 int	ft_printf(const char *str, ...)

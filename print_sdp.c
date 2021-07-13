@@ -100,36 +100,57 @@ void	ft_print_u(unsigned int number, t_print *tab)
 {
 	char	*str;
 	int		len;
+	char	sym;
+	long long	nbr;
 
-	tab->left_align = 0;
-	if (number < 0)
+	nbr = number;
+	tab->isnegative = 0;
+	sym = ' ';
+	if (tab->zero_prefix == 1)
+		sym = '0';
+	if (!number && tab->tochnost == 0)
 	{
-		tab->isnegative = 1;
-		number *= -1;
+		while (tab->width--)
+			ft_putchar(sym, tab);
+		return ;
 	}
-	str = ft_itoa(number, 10);
+	// if (number < 0)
+	// {
+	// 	tab->isnegative = 1;
+	// 	nbr *= -1;
+	// 	tab->width--;
+	// }
+	str = ft_itoa(nbr, 10);
 	len = ft_strlen(str);
-	if (tab->dot && tab->tochnost > len)
-		len = tab->tochnost;
-	if (!number && !tab->tochnost)
-		len = 0;
-	if (tab->isnegative == 1 && tab->width > 0)
-		tab->width--;
-	if (tab->isnegative == 1)
-		ft_putchar('-', tab);
-	if (tab->isnegative == 1 && tab->tochnost != 0)
-		ft_putstr(str, ft_strlen(str), tab);
-	while (tab->width > len)
+	if (tab->left_align == 0) //fight align
 	{
-		ft_putchar(' ', tab);
-		tab->width--;
-	}
-	while (len > ft_strlen(str))
-	{
-		ft_putchar('0', tab);
-		len--;
-	}
-	if (tab->isnegative == 0 && tab->tochnost != 0)
+		if (tab->tochnost >= 0 && tab->tochnost > len)
+			while (tab->width-- - tab->tochnost > 0)
+				ft_putchar(sym, tab);
+		else
+			while (tab->width-- - len > 0)
+				ft_putchar(sym, tab);
+		if (tab->isnegative == 1)
+			ft_putchar('-', tab);
+		if (tab->tochnost >= 0)
+			while (tab->tochnost-- > len)
+				ft_putchar('0', tab);
 		ft_putstr(str, ft_strlen(str), tab);
+	}
+	else //left align
+	{
+		if (tab->isnegative == 1)
+			ft_putchar('-', tab);
+		if (tab->tochnost >= 0)
+			while (tab->tochnost-- > len)
+			{
+				ft_putchar('0', tab);
+				tab->width--;
+			}
+		ft_putstr(str, ft_strlen(str), tab);
+		tab->width -= len;
+		while (tab->width-- > 0)
+			ft_putchar(' ', tab);
+	}
 	free(str);
 }
