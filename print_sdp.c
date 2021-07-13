@@ -26,57 +26,56 @@ void	ft_print_d(int number, t_print *tab)
 	}
 	str = ft_itoa(nbr, 10);
 	len = ft_strlen(str);
-	if (tab->left_align == 0) //right align
+	if (tab->tochnost >= 0)
 	{
-		if (tab->tochnost != 0 && tab->tochnost < tab->width && tab->width > len)
+		if (tab->tochnost >= tab->width)
 		{
-			if (tab->tochnost > 0)
-			{
-				while (tab->width-- > tab->tochnost)
-					ft_putchar(' ', tab);
-				if (tab->isnegative == 1)
-					ft_putchar('-', tab);
-				while (tab->tochnost-- > len)
-					ft_putchar('0', tab);
-			}
-			else
-			{
-				if (tab->isnegative == 1)
-					ft_putchar('-', tab);
-				while (tab->width-- > len)
-					ft_putchar('0', tab);
-			}
-		}
-		else
-		{
-			if (tab->tochnost > 0 && tab->tochnost > len)
-				while (tab->width-- - tab->tochnost > 0)
-					ft_putchar(sym, tab);
-			else
-				while (tab->width-- - len > 0)
-					ft_putchar(sym, tab);
-			if (tab->isnegative == 1)
+			if (tab->isnegative)
 				ft_putchar('-', tab);
-			if (tab->tochnost >= 0)
-				while (tab->tochnost-- > len)
-					ft_putchar('0', tab);
+			while (tab->tochnost-- > len)
+				ft_putchar('0', tab);
+			ft_putstr(str, len, tab);
 		}
-		ft_putstr(str, ft_strlen(str), tab);
-	}
-	else //left align
-	{
-		if (tab->isnegative == 1)
-			ft_putchar('-', tab);
-		if (tab->tochnost >= 0)
+		else // точность меньше ширины
+		{
+			if (tab->left_align == 0)
+			{
+				if (tab->tochnost == 0)
+					while (tab->width-- > len) // тут была точность
+						ft_putchar(' ', tab);
+				else
+					while (tab->width-- > tab->tochnost)
+						ft_putchar(' ', tab);
+			}
+			if (tab->isnegative)
+				ft_putchar('-', tab);
 			while (tab->tochnost-- > len)
 			{
 				ft_putchar('0', tab);
 				tab->width--;
 			}
-		ft_putstr(str, ft_strlen(str), tab);
-		tab->width -= len;
-		while (tab->width-- > 0)
-			ft_putchar(' ', tab);
+			ft_putstr(str, len, tab);
+			if (tab->left_align == 1)
+				while (tab->width-- > len)
+					ft_putchar(' ', tab);
+		}
+	}
+	else // tochnost == -1
+	{
+		if (tab->isnegative)
+			ft_putchar('-', tab);
+		if (tab->left_align == 0)
+		{
+			if (tab->zero_prefix)
+				while (tab->width-- > len)
+				ft_putchar('0', tab);
+			while (tab->width-- > len)
+				ft_putchar(' ', tab);
+		}
+		ft_putstr(str, len, tab);
+		if (tab->left_align == 1)
+			while (tab->width-- > len)
+				ft_putchar(' ', tab);
 	}
 	free(str);
 }
