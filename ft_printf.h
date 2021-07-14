@@ -8,32 +8,60 @@
 typedef struct s_print
 {
 	va_list	args;
+	int		index;
+	int		isnegative;
+	int		left_align;
+	int		zero_prefix;
 	int		width;
-	int		tochnost; // убрать?
-	int		zero_padding; // тоже не использую
-	int		dot; // считается на самом деле как точность
-	int		dash;
+	int		dot;
+	int		tochnost;
 	int		total_length;
-	int		sign;
-	int		is_zero;
-	int		percent;
-	int		space_flag;
 }			t_print;
 
+/*utils and print string*/
 void	ft_putchar(char c, t_print *tab);
 int		ft_isdigit(int c);
 int		ft_strlen(char *str);
 void	ft_putstr(char *str, int len, t_print *tab);
 void	ft_print_str(char *str, t_print *tab);
-void	ft_print_p(unsigned long number, t_print *tab);
-void	find_num_idx(int len, unsigned long number, int base, char *str);
-char	*ft_itoa(unsigned long number, int base);
-char	*ft_itoa_X(unsigned long number, int base);
-void	ft_print_x(unsigned long number, t_print *tab);
-void	ft_print_X(unsigned long number, t_print *tab);
-void	ft_print_u(unsigned int number, t_print *tab);
-void	ft_print_d(long number, t_print *tab);
+/*init*/
+t_print	*ft_init_tab(t_print *tab);
+/*parcer*/
+int		ft_parcewidth(const char *str, t_print *tab, va_list ap);
+int		ft_parcetochn(const char *str, t_print *tab, va_list ap);
+int		ft_parceflags(const char *str, t_print *tab, va_list ap);
+void	ft_parcespec(const char *str, t_print *tab, va_list ap);
+/*print char*/
 void	ft_print_c(int c, t_print *tab);
-int		ft_printf(const char	*str, ...);
+/*itoa for dec, int, small x*/
+void	ft_find_num_idx(int len, unsigned long number, int base, char *str);
+char	*ft_itoa(unsigned long long number, int base);
+/*decimals and ints*/
+void	ft_print_d_ralign(int len, t_print *tab);
+void	ft_print_tochn_pstv(char *str, int len, t_print *tab);
+void	ft_make_print_d(long long nbr, t_print *tab);
+void	ft_print_d(int number, t_print *tab);
+/*unsigned*/
+void	ft_print_u_ralign(char *str, char sym, int len, t_print *tab);
+void	ft_print_u_lalign(char *str, int len, t_print *tab);
+void	ft_print_u(unsigned int number, t_print *tab);
+/*pointer*/
+void	ft_print_p_lalign(char *str, int len, t_print *tab);
+void	ft_print_p(unsigned long long number, t_print *tab);
+/*upper hexadecimals*/
+void	ft_print_ralign(char *str, char sym, int len, t_print *tab);
+void	ft_print_lalign(char *str, int len, t_print *tab);
+char	*ft_itoa_upperx(unsigned long long number, int base);
+void	ft_print_lalign(char *str, int len, t_print *tab);
+void	ft_print_uppx(long long nbr, char sym, t_print *tab);
+void	ft_print_upperx(unsigned long number, t_print *tab);
+/*hexadecimals*/
+void	ft_print_smx_ralign(char *str, char sym, int len, t_print *tab);
+void	ft_print_smx_lalign(char *str, int len, t_print *tab);
+void	ft_print_smx(long long nbr, char sym, t_print *tab);
+void	ft_print_x(unsigned long number, t_print *tab);
+/*main*/
+void	ft_make_print_main(t_print *tab, const char *str, va_list ap);
+int		ft_printf(const char *str, ...);
 
 #endif

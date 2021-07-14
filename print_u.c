@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	ft_print_ralign(char *str, char sym, int len, t_print *tab)
+void	ft_print_u_ralign(char *str, char sym, int len, t_print *tab)
 {
 	if (tab->tochnost >= 0 && tab->tochnost > len)
 		while (tab->width-- - tab->tochnost > 0)
@@ -16,7 +16,7 @@ void	ft_print_ralign(char *str, char sym, int len, t_print *tab)
 	ft_putstr(str, ft_strlen(str), tab);
 }
 
-void	ft_print_lalign(char *str, int len, t_print *tab)
+void	ft_print_u_lalign(char *str, int len, t_print *tab)
 {
 	if (tab->isnegative == 1)
 		ft_putchar('-', tab);
@@ -34,22 +34,10 @@ void	ft_print_lalign(char *str, int len, t_print *tab)
 		ft_putchar(' ', tab);
 }
 
-void	ft_print_uppx(long long nbr, char sym, t_print *tab)
+void	ft_print_u(unsigned int number, t_print *tab)
 {
 	char		*str;
 	int			len;
-
-	str = ft_itoa_upperx(nbr, 16);
-	len = ft_strlen(str);
-	if (tab->left_align == 0)
-		ft_print_ralign(str, sym, len, tab);
-	else
-		ft_print_lalign(str, len, tab);
-	free(str);
-}
-
-void	ft_print_upperx(unsigned long number, t_print *tab)
-{
 	char		sym;
 	long long	nbr;
 
@@ -64,11 +52,11 @@ void	ft_print_upperx(unsigned long number, t_print *tab)
 			ft_putchar(sym, tab);
 		return ;
 	}
-	if (number < 0)
-	{
-		tab->isnegative = 1;
-		nbr *= -1;
-		tab->width--;
-	}
-	ft_print_uppx(nbr, sym, tab);
+	str = ft_itoa(nbr, 10);
+	len = ft_strlen(str);
+	if (tab->left_align == 0)
+		ft_print_u_ralign(str, sym, len, tab);
+	else
+		ft_print_u_lalign(str, len, tab);
+	free(str);
 }

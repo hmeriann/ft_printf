@@ -1,8 +1,11 @@
 NAME =	libftprintf.a
 
-SRCS = 		ft_printf.c	print_bigX.c\
-			print_c.c	print_sdp.c\
-			print_smallx.c\
+SRCS = 		ft_printf.c		print_bigX.c\
+			print_c.c		print_di.c\
+			print_smallx.c	itoa_upperx.c\
+			ft_itoa_smallx_di.c\
+			init_tprint.c	parcer.c\
+			print_p.c		print_u.c\
 			utilities.c
 
 INCLUDE = ft_printf.h
